@@ -9,7 +9,6 @@ Theory:
 import os, random, struct
 from Crypto.Cipher import AES
 from Crypto.Util import number, randpool
-from Crypto.Cipher import AES
 import sys
 import time
 
@@ -136,7 +135,9 @@ def makepuzzle(t):
     b = pow(a, e, N)
 
     cipher_key = (key + b) % N
-    return (number.long_to_bytes(key,32), {'N': N, 'a': a, 'steps': t, 'cipher_key': cipher_key})
+    puzzle =  {'N': N, 'a': a, 'steps': t, 'cipher_key': cipher_key, 'hash' : ""}
+    puzzle['hash'] = hash_puzzle(puzzle) 
+    return (number.long_to_bytes(key,32), puzzle)
 
 def eta(remaining, speed):
     seconds = remaining/speed
@@ -163,9 +164,13 @@ def update_speed():
         SPEED = calibrate_speed()
         SAVE_INTERVAL = SPEED * 10 * MINUTE
 
+def hash_puzzle(p):
+    puzzledata =  {'N': p['N'], 'a': p['a'], 'steps': p['steps'], 'cipher_key': p['cipher_key']}
+    return hash(str(puzzledata))
+
 def save_puzzle(p):
     state = str(p)
-    filename = p['ciphertext'] + ".timelock"
+    filename = str(p['hash']) + ".timelock"
     with open(filename, 'w') as f:
         f.write('# Run ./timelock FILENAME > OUTFILE to decode\n')
         putestimation(f, p)
