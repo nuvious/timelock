@@ -8,3 +8,7 @@ Using timelock.py you can create self-decoding files that take a arbitrary amoun
 I am not a cryptographer, so this implementation should be considered only secure in theory!
 
 Dependencies: python's Crypto library.
+
+Addendum for nuvious fork:
+
+Forking the project to add better compatibility with binary files and bulk time-lock encryption. My personal use case is to make this a tool to digitally locking a files (like music, movies, games, etc) to make myself more productive. Will try to retain basic string puzzle encryption functionality but in general will be re-working the project to support both.

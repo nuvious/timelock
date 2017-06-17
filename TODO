@@ -1,1 +1,5 @@
-compression
+Implement multi-file/directory functionality.
+When encrypting a file, push the puzzle as a header to the file.
+Write companion scripts which implement gz to compress the file after it's been encrypted.
+Verify intermediary encryption file doesn't exist before encrypting.
+Create command line arguments to distinguish between binary file encryption and string message encryption.
