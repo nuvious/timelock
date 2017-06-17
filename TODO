@@ -1,5 +1,14 @@
-Implement multi-file/directory functionality.
-When encrypting a file, push the puzzle as a header to the file.
-Write companion scripts which implement gz to compress the file after it's been encrypted.
-Verify intermediary encryption file doesn't exist before encrypting.
-Create command line arguments to distinguish between binary file encryption and string message encryption.
+Feature/Task	Description 
+001/---		Create support for binary files without breaking functionality to encrypt a simple string message.
+001/001		Create checksum of puzzle parameters for use in header. Will be used by save-state and allow saving of a puzzzle's solution for use in decrypting multiple files. This will only be a checksum for the puzzle itself (no fileneames or anything else). 
+001/002		Design new file header that includes type of puzzle (string/binary), hash of parameters (thumbprint of the puzzle only so that 
+001/003		When encrypting a file, push the puzzle as a header to the file with parameters that specify whether it's binary or a string puzzle.
+001/004		Verify intermediary encryption file doesn't exist before encrypting.
+001/005		Create command line arguments to distinguish between binary file encryption and string message encryption.
+001/006		Implement optional file name encryption.
+002/---		Implement multi-file/directory functionality.
+003/---		Write companion scripts which implement gz to compress the file after it's been encrypted.
+004/---		Support saving state of solving so user can stop/restart saving of files.
+004/001		Add interrupt for solving process.
+004/002		Create save file function that save the puzzle progress to a file named after the puzzle's thumbprint.
+004/003		Add functionality to look for a save state file in the PWD and/or specifying the file explicitly with a flag.
